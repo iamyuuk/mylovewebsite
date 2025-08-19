@@ -1,61 +1,125 @@
+/* 全局基础 */
+* {
+  box-sizing: border-box;
+}
+
 body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
-      color: #333;
-      text-align: center;
-      overflow-x: hidden;
-    }
-    h1 {
-      margin-top: 80px;
-      font-size: 3em;
-    }
-    #typewriter {
-      font-size: 1.5em;
-      color: #d6336c;
-      margin-bottom: 40px;
-    }
-    #days {
-      font-size: 1.2em;
-      margin-bottom: 50px;
-    }
-    .photos {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin: 30px;
-    }
-    .photos img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
-    }
-    .photos img:hover {
-      transform: scale(1.05);
-    }
-    .heart {
-      position: fixed;
-      font-size: 20px;
-      animation: floatUp 2s ease-out forwards;
-      pointer-events: none;
-    }
-    @keyframes floatUp {
-      from {opacity: 1; transform: translateY(0);}
-      to {opacity: 0; transform: translateY(-100px);}
-    }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 至少占满整个屏幕高度 */
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(-45deg, #ff9a9e, #fbc2eb);
+  color: #333;
+  text-align: center;
+  overflow-x: hidden;
+  animation: gradientBG 1s linear infinite;
 
-.title {
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* 阴影 */
-}
-.timeshow {
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* 阴影 */
-    color: #d6336c;
+  @keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
 }
 
+.andmore {
+    color: darkgrey;
+    display: block;  /* 默认是块级元素，但保险起见 */
+    width: 100%;
+    text-align: center; /* 居中显示 */
+    margin-top: 10px;   /* 和图片有间距 */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    order: 1;
+}
+
+}
+
+/* 标题风格 */
+h1, h2, h3, h4, h5, h6 {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  font-family: 'Segoe UI', sans-serif;
+  margin: 20px 0;
+}
+
+.subtitle {
+    font-style: italic;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-family: 'Segoe UI', sans-serif;
+    margin: 20px 0;
+}
+
+/* 打字机效果 */
+#typewriter {
+  font-size: 1.5em;
+  color: #d6336c;
+  margin-bottom: 40px;
+}
+
+/* 天数显示 */
+#days {
+  font-size: 1.2em;
+  margin-bottom: 50px;
+  color: #d6336c;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* 照片墙 */
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 30px;
+}
+.photos img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+.photos img:hover {
+  transform: scale(1.05);
+}
+
+/* 悬浮爱心 */
+.heart {
+  position: fixed;
+  font-size: 20px;
+  animation: floatUp 2s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes floatUp {
+  from {opacity: 1; transform: translateY(0);}
+  to {opacity: 0; transform: translateY(-100px);}
+}
+
+/* 段落文字样式 */
+p {
+  max-width: 600px;
+  margin: 10px auto;
+  line-height: 1.6;
+  text-align: justify;
+  word-wrap: break-word;
+  padding: 0 10px;
+  font-size: 16px;
+}
+
+/* 手机端适配 */
+@media (max-width: 480px) {
+  p {
+    font-size: 14px;
+    padding: 0 8px;
+  }
+  .photos img {
+    width: 45%;
+    height: auto;
+  }
+}
+
+
+
+/* 模态弹窗 */
 #modal {
   position: fixed;
   top: 0; left: 0;
@@ -65,6 +129,7 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  display: none;
 }
 #modal img {
   max-width: 90%;

@@ -8,18 +8,18 @@
 </head>
 <body>
   <h1 class="title">💖 亲爱的穆昱含 💖</h1>
-  <div id="typewriter">我们是对方特别的人</div>
+  <div id="typewriter" class="subtitle">我们是对方特别的人</div>
   <div id="days"></div>
 
   <h2 class="title">我们的照片墙</h2>
   <div class="photos">
     <img src="img/第一次牵手.jpg" alt="第一次牵手" class="clickable">
-    <img src="photo2.jpg" alt="你送我的尼泊尔手工本">
-    <img src="photo3.jpg" alt="我们的回忆">
+    <img src="img/尼泊尔手工本.jpg" alt="你送我的尼泊尔手工本">
+    <div class="andmore">And More...</div>
   </div>
   <h3 class="title">我想对你说的话</h3>
   <h4 class="timeshow">2025.8.20</h4>
-  <div id="speak1">亲爱的穆昱含同学，
+  <p id="speak1">亲爱的穆昱含同学，
     不知道你看到这里会有什么感想，
     我想做一些手工礼物给你，
     但我觉得那对我来说实在是太难了，
@@ -29,8 +29,7 @@
     每隔一段时间我就会来更新一次照片墙，
     说不定我也会写一些新的想对你说的话，
     当然我不会直接告诉你的，
-    你要来自己看哦~
-    </div>
+    你要来自己看哦~</p>
   <!-- 模态弹窗 -->
 <div id="modal" style="display:none;">
   <span id="close">&times;</span>
@@ -40,4 +39,17 @@
   <canvas id="fireworks"></canvas>
   <script src="script.js"></script>
 </body>
+<footer>
+  <p>最新提交：<span id="latest-commit"></span></p>
+</footer>
+
+<script>
+  fetch('https://api.github.com/repos/iamyuuk/mylovewebsite/commits')
+    .then(response => response.json())
+    .then(data => {
+      const latestCommit = data[0].commit.message;
+      document.getElementById('latest-commit').textContent = latestCommit;
+    })
+    .catch(error => console.error('获取提交信息失败:', error));
+</script>
 </html>
