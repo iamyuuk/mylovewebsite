@@ -15,7 +15,6 @@ function typing(elementId, speed = 120) {
   type();
 }
 typing("typewriter", 80);
-typing("speak1", 50)
 
 // 在一起天数 (+1)
 const startDate = new Date("2025-08-09"); // <- 改成你们在一起的日期

@@ -1,55 +1,118 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>穆昱含 & 陶浩宇</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>请登录</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    margin: 0;
+  }
+
+  .login-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+  }
+
+  h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  #passwordInput {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* 确保 padding 不会撑大宽度 */
+    margin-bottom: 20px;
+  }
+
+  #submitBtn {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  #submitBtn:hover {
+    background-color: #0056b3;
+  }
+
+  #errorMessage {
+    margin-top: 15px;
+    color: #dc3545; /* 红色 */
+    font-weight: bold;
+    min-height: 20px; /* 为错误信息预留空间，防止布局跳动 */
+  }
+</style>
 </head>
 <body>
-  <h1 class="title">💖 亲爱的穆昱含 💖</h1>
-  <div id="typewriter" class="subtitle">我们是对方特别的人</div>
-  <div id="days"></div>
 
-  <h2 class="title">我们的照片墙</h2>
-  <div class="photos">
-    <img src="img/第一次牵手.jpg" alt="第一次牵手" class="clickable">
-    <img src="img/尼泊尔手工本.jpg" alt="你送我的尼泊尔手工本">
-    <div class="andmore">And More...</div>
+  <div class="login-container">
+    <h1>请输入密码</h1>
+    <input type="password" id="passwordInput" placeholder="在此输入密码">
+    <button id="submitBtn">进入网站</button>
+    <div id="errorMessage"></div>
   </div>
-  <h3 class="title">我想对你说的话</h3>
-  <h4 class="timeshow">2025.8.20</h4>
-  <p id="speak1">亲爱的穆昱含同学，
-    不知道你看到这里会有什么感想，
-    我想做一些手工礼物给你，
-    但我觉得那对我来说实在是太难了，
-    于是这个网站就诞生了！
-    我想做这个网站来记录我们之间的生活，
-    也是非常的有纪念意义哈，
-    每隔一段时间我就会来更新一次照片墙，
-    说不定我也会写一些新的想对你说的话，
-    当然我不会直接告诉你的，
-    你要来自己看哦~</p>
-  <!-- 模态弹窗 -->
-<div id="modal" style="display:none;">
-  <span id="close">&times;</span>
-  <img id="modal-img" src="">
-</div>
-
-  <canvas id="fireworks"></canvas>
-  <script src="script.js"></script>
-</body>
-<footer>
-  <p>最新提交：<span id="latest-commit"></span></p>
-</footer>
 
 <script>
-  fetch('https://api.github.com/repos/iamyuuk/mylovewebsite/commits')
-    .then(response => response.json())
-    .then(data => {
-      const latestCommit = data[0].commit.message;
-      document.getElementById('latest-commit').textContent = latestCommit;
-    })
-    .catch(error => console.error('获取提交信息失败:', error));
+  // 1. 获取页面元素
+  const passwordInput = document.getElementById('passwordInput');
+  const submitBtn = document.getElementById('submitBtn');
+  const errorMessageDiv = document.getElementById('errorMessage');
+
+  // 2. 定义正确的密码
+  const correctPassword = '>MyH2oo8o3l3<';
+
+  // 3. 登录验证函数
+  function checkPassword() {
+    const userInput = passwordInput.value.trim(); // 获取输入并去除首尾空格
+
+    if (userInput === correctPassword) {
+      // 密码正确，设置一个登录令牌
+      // sessionStorage 在浏览器关闭后会自动清除，很适合用于此场景
+      sessionStorage.setItem('isLoggedIn', 'true');
+      
+      // 跳转到你的主页面
+      window.location.href = 'main.html'; 
+    } else {
+      // 密码错误
+      errorMessageDiv.textContent = '密码错误，请重试。';
+      passwordInput.value = ''; // 清空输入框
+      passwordInput.focus(); // 让输入框重新获得焦点
+    }
+  }
+
+  // 4. 为按钮添加点击事件
+  submitBtn.addEventListener('click', checkPassword);
+
+  // 5. 增加按回车键提交的功能
+  passwordInput.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') { // 使用 event.key 更现代
+      checkPassword();
+    }
+  });
 </script>
+
+</body>
 </html>

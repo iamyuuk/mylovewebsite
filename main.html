@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>穆昱含 & 陶浩宇</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1 class="title">💖 亲爱的穆昱含 💖</h1>
+  <div id="typewriter" class="subtitle">我们是对方特别的人</div>
+  <div id="days"></div>
+
+  <h2 class="title">我们的照片墙</h2>
+  <div class="photos">
+    <img src="img/第一次牵手.jpg" alt="第一次牵手" class="clickable">
+    <img src="img/尼泊尔手工本.jpg" alt="你送我的尼泊尔手工本" class="clickable">
+    <img src="img/一张合照.jpg" alt="一张合照" class="clickable">
+    <img src="img/你给我买的好一多.jpg" alt="你给我买的好一多" class="clickable">
+    <img src="img/嘻嘻.jpg" alt="亲一下" class="clickable">
+    <img src="img/千纸鹤拆开后.jpg" alt="一百天礼物你给的千纸鹤拆开后" class="clickable">
+    <img src="img/我最喜欢的宝宝的照片.jpg" alt="最美之人" class="clickable">
+    <img src="img/许愿瓶.jpg" alt="你给我的许愿瓶" class="clickable">
+    <img src="img/剃须刀.jpg" alt="你送我的剃须刀" class="clickable">
+    <img src="img/你给我做的刺绣.jpg" alt="你送我的刺绣" class="clickable">
+    <div class="andmore">And More...</div>
+  </div>
+  <h3 class="title">我想对你说的话</h3>
+  <h4 class="timeshow">2025.8.20</h4>
+  <p>穆昱含同学，
+    不知道你看到这里会有什么感想，
+    我想做一些手工礼物给你，
+    但我觉得那对我来说实在是太难了，
+    于是这个网站就诞生了！
+    我想做这个网站来记录我们之间的生活，
+    也是非常的有纪念意义哈，
+    每隔一段时间我就会来更新一次照片墙，
+    说不定我也会写一些新的想对你说的话，
+    当然我不会直接告诉你的，
+    你要来自己看哦~</p>
+  <h4>2026.1.2</h4>
+  <p>好长时间没有更新出来了，
+    最近重新弄了好几次这个网站，
+    但是一直在出问题，
+    这次总算是弄好了，
+    那我就再写一些话给你吧。<br>
+    时间过得好快，
+    我们在一起都快150天了，
+    我们也一起跨了第一个年，
+    我好不容易习惯叫2025现在都2026了，
+    刚刚打日期都打成2025了哈哈哈，
+    我越来越觉得和你在一起是一件很幸福很幸福的事情了，
+    我感觉我身边好多东西都和你有关，
+    左手上你送我的手表、右手上你带过的手环、书包里你送我的笔记本、书架上你给我写的信，
+    还有好多好多东西都让我觉得我对你而言很重要，
+    当然你也对我十分十分的重要，
+    但是我现在感觉到我对你做的一些事情，
+    并不能和我对你的感情对应，
+    我老是因为忘记事情，没有考虑你的心情你的感受而惹你生气，
+    昨天晚上我又让你难过在半夜偷偷哭了，
+    我真的感觉很自责，
+    以后的我一定会好好考虑好你的感受的，
+    做事我一定会多思考多想，
+    答应你的事情哦我也绝对会做到的！
+    亲爱的我真的很爱你很爱你，
+    所以我对你一定是100%真心的，
+    我做的事情确实是真的有不对的地方，
+    我以后一定会慢慢改正，
+    宝宝请你给我一点时间，谢谢宝宝！
+  </p>
+  <!-- 模态弹窗 -->
+<div id="modal" style="display:none;">
+  <span id="close">&times;</span>
+  <img id="modal-img" src="">
+</div>
+
+  <canvas id="fireworks"></canvas>
+  <script src="script.js"></script>
+</body>
+<footer>
+  <p>Github最新提交信息：<span id="latest-commit"></span></p>
+</footer>
+
+<script>
+  fetch('https://api.github.com/repos/iamyuuk/mylovewebsite/commits')
+    .then(response => response.json())
+    .then(data => {
+      const latestCommit = data[0].commit.message;
+      document.getElementById('latest-commit').textContent = latestCommit;
+    })
+    .catch(error => console.error('获取提交信息失败:', error));
+</script>
+</html>
